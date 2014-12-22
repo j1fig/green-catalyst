@@ -1,0 +1,4 @@
+nose
+git+https://github.com/adafruit/Adafruit_Python_DHT.git
+python-forecastio
+celery

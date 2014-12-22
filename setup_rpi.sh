@@ -2,6 +2,9 @@
 
 apt-get update
 
-apt-get install -y build-essential python-dev python-pip
+apt-get install -y build-essential python-dev python-pip git
 
-pip install -r requirements.txt
+pip install virtualenv
+
+virtualenv .gc
+source .gc/env/bin/activate

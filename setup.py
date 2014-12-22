@@ -7,6 +7,7 @@ _version = '0.1.0.%s' % int(time.time())
 _packages = find_packages(where='.')
 
 install_requires = [
+    'nose',
     'python-forecastio',
     'celery',
 ]

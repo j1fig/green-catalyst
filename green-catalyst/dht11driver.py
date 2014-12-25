@@ -218,51 +218,10 @@ class DHT11(object):
     
     @atexit.register 
     def cancel(self):
-       """Cancel the DHT22 sensor."""
+       """Cancel the DHT11 sensor."""
     
        self.pi.set_watchdog(self.gpio, 0)
     
        if self.cb != None:
           self.cb.cancel()
           self.cb = None
-
-if __name__ == "__main__":
-
-   import time
-
-   import pigpio
-
-   import dht11driver
-
-   # Intervals of about 2 seconds or less will eventually hang the DHT22.
-   INTERVAL=3
-
-   pi = pigpio.pi()
-
-   s = dht11driver.DHT11(pi, 4, LED=16, power=8)
-
-   r = 0
-
-   next_reading = time.time()
-
-   while True:
-
-      r += 1
-
-      s.trigger()
-
-      time.sleep(0.2)
-
-      print("{} {} {} {:3.2f} {} {} {} {}".format(
-         r, s.humidity(), s.temperature(), s.staleness(),
-         s.bad_checksum(), s.short_message(), s.missing_message(),
-         s.sensor_resets()))
-
-      next_reading += INTERVAL
-
-      time.sleep(next_reading-time.time()) # Overall INTERVAL second polling.
-
-   s.cancel()
-
-   pi.stop()
-

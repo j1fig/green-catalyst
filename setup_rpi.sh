@@ -2,7 +2,7 @@
 
 apt-get update
 
-apt-get install -y build-essential python-dev python-pip git
+apt-get install -y build-essential python-dev python-pip git rabbitmq-server
 pip install virtualenv
 
 # virtenv setup
@@ -17,3 +17,8 @@ make
 make install
 cd ..
 rm -rf PIGPIO
+
+# rabbitmq setup
+rabbitmqctl add_user greencatalyst green
+rabbitmqctl add_vhost vhost
+rabbitmqctl set_permissions -p vhost greencatalyst ".*" ".*" ".*"
